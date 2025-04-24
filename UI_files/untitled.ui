@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>321</width>
+    <height>436</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>321</width>
+    <height>436</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>321</width>
+     <height>436</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>321</width>
+     <height>436</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>321</width>
+     <height>436</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Cascadia Mono SemiLight</family>
+    </font>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideNone</enum>
+   </property>
+   <property name="documentMode">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>常用</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>10</y>
+       <width>299</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>來源位置</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <widget class="QPushButton" name="source_btn">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>20</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>劉覽</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="source_path">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>70</y>
+       <width>299</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>目標位置</string>
+     </property>
+     <widget class="QPushButton" name="det_btn">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>20</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>瀏覽</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="det_path">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>130</y>
+       <width>299</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>選擇動作</string>
+     </property>
+     <widget class="QRadioButton" name="radioButton">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>25</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>複製檔案</string>
+      </property>
+      <property name="text">
+       <string>複製</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>25</y>
+        <width>50</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>移動檔案</string>
+      </property>
+      <property name="text">
+       <string>移動</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_3">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>25</y>
+        <width>54</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>鏡像複製(使目標資料夾與來源資料夾完全相同，不推薦使用)</string>
+      </property>
+      <property name="text">
+       <string>鏡像</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>190</y>
+       <width>299</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>傳輸功能</string>
+     </property>
+     <widget class="QCheckBox" name="mt_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>25</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="tabletTracking">
+       <bool>false</bool>
+      </property>
+      <property name="toolTip">
+       <string>針對大量檔案使用多執行續加速傳輸(範圍為1~128)</string>
+      </property>
+      <property name="text">
+       <string>多執行續</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="j_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>啟用非緩衝 I/O，建議單個檔案超過100MB時使用</string>
+      </property>
+      <property name="text">
+       <string>大型檔案</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="z_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>75</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>如果中斷傳輸，下次可從中斷處繼續(略微降低性能)</string>
+      </property>
+      <property name="text">
+       <string>中斷恢復</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="mt_sb">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>25</y>
+        <width>43</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>128</number>
+      </property>
+      <property name="value">
+       <number>8</number>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="xn_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>95</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>有相同檔案時，在目標位置保留較舊的檔案</string>
+      </property>
+      <property name="text">
+       <string>保留較舊檔案</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="xo_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>75</y>
+        <width>95</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>有相同檔案時，在目標位置保留較新的檔案</string>
+      </property>
+      <property name="text">
+       <string>保留較新檔案</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="is_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>25</y>
+        <width>95</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>強制取代所有檔案(預設為略過)</string>
+      </property>
+      <property name="text">
+       <string>強制全部取代</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="cancel_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>375</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>取消</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="start_btn">
+     <property name="geometry">
+      <rect>
+       <x>226</x>
+       <y>375</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>開始傳輸</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>300</y>
+       <width>299</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>狀態</string>
+     </property>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>25</y>
+        <width>201</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>準備中...</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>進階</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>10</y>
+       <width>299</width>
+       <height>86</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>失敗重試</string>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>25</y>
+        <width>47</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>重試次數(建議:3次)</string>
+      </property>
+      <property name="text">
+       <string>重試次數</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>55</y>
+        <width>47</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>重試等待時間(建議:5秒)</string>
+      </property>
+      <property name="text">
+       <string>等待時間</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="rt_time">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>9</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="wait_time">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>50</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>59</number>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>20</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="currentText">
+       <string>次</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>次</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>十</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>百</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>千</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>萬</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>十萬</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>50</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="currentText">
+       <string>秒</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>秒</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>分</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>時</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>25</y>
+        <width>47</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="text">
+       <string>單位</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>55</y>
+        <width>47</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="text">
+       <string>單位</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>105</y>
+       <width>299</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>進階功能</string>
+     </property>
+     <widget class="QCheckBox" name="i_s_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>25</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="text">
+       <string>包含來源資料夾</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="e_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>25</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>包含空資料夾</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="xd_xf_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>55</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>在來源資料夾中加入exclude.txt，即可排除內部寫到的檔案</string>
+      </property>
+      <property name="text">
+       <string>排除exclude.txt</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="not_e_s_cb">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>55</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>不包含資料夾</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="mir_w_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>85</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>在來源資料夾中加入exclude.txt，即可排除內部寫到的檔案</string>
+      </property>
+      <property name="text">
+       <string>關閉鏡像警告</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>220</y>
+       <width>299</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>記錄檔</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <widget class="QCheckBox" name="log_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>73</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>啟用log</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="log_btn">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>80</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>瀏覽</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="log_path">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>181</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="logp_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>20</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>僅保留單次</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="nfl_cb">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>73</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>顯示檔案</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="ndl_cb">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>顯示清單</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>370</y>
+       <width>221</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Cascadia Mono SemiLight</family>
+      </font>
+     </property>
+     <property name="text">
+      <string>© 2025 Seanut‧GPLv3 License  </string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>source_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>source_folder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>283</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>72</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>det_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>det_folder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>270</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>173</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>start_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>start()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>267</x>
+     <y>418</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>417</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancel_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>cancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>420</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>424</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>log_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>log_folder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>276</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>mir_warning()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>238</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>435</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>5</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+ <slots>
+  <slot>source_folder()</slot>
+  <slot>det_folder()</slot>
+  <slot>start()</slot>
+  <slot>cancel()</slot>
+  <slot>excloud_folder()</slot>
+  <slot>log_folder()</slot>
+  <slot>stage_change_e()</slot>
+  <slot>stage_change_n()</slot>
+  <slot>mir_warning()</slot>
+ </slots>
+</ui>
