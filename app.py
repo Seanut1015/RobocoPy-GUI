@@ -160,7 +160,7 @@ class MyWindow(QWidget, Ui_Form):
             with open(exclude_file, encoding="utf-8") as f:
                 lines = [line.strip() for line in f if line.strip()]
                 xd_list = []
-                xf_list = []
+                xf_list = ["exclude.txt"]
                 for line in lines:
                     path = source / line
                     print(path)
@@ -172,7 +172,7 @@ class MyWindow(QWidget, Ui_Form):
                 if xd_list:
                     cmd += ["/XD"] + xd_list
                 if xf_list:
-                    cmd += ["/XF", "exclude.txt"] + xf_list
+                    cmd += ["/XF"] + xf_list
         except FileNotFoundError:
             pass
         log_set = "/unilog:" if self.logp_cb.checkState() == Qt.Checked else "/unilog+:"

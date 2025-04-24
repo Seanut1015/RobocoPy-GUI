@@ -1,5 +1,5 @@
 @echo off
-call ..\.venv\Scripts\activate.bat
+call .\.venv\Scripts\activate.bat
 
 where pyinstaller >nul 2>nul
 if errorlevel 1 (

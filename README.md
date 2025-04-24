@@ -61,7 +61,6 @@ project/
 
 ## 🔧 開發環境
 - Python 版本：3.13
-- 請參考requirements.txt
 - 最低建議硬體：4GB RAM，基本 CPU
 
 ## 📸 擷圖與範例 (Optional)
@@ -75,4 +74,3 @@ project/
 
 ## 👤 作者
 - 作者：Seanut
-
