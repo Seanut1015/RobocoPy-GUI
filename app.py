@@ -1,3 +1,4 @@
+import ctypes
 import sys
 import subprocess
 import time
@@ -9,6 +10,8 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
 from UI_files.UI import Ui_Form
 import configparser
 CONFIG_FILE = "config.ini"
+
+ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
 
 class RobocopyWorker(QObject):
@@ -45,6 +48,8 @@ class MyWindow(QWidget, Ui_Form):
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
         self.setupUi(self)
+        # self.setFixedSize(self.sizeHint())
+
         self.s1 = True
         self.s2 = False
         self.status = "複製"
