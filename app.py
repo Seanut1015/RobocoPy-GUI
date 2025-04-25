@@ -1,17 +1,19 @@
-import ctypes
+from PyQt6.QtWidgets import QStyleFactory
 import sys
 import subprocess
 import time
 from pathlib import Path
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QApplication, QWidget, QFileDialog, QMessageBox
 )
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
+from PyQt6.QtCore import Qt, QThread, pyqtSignal, QObject
 from UI_files.UI import Ui_Form
-import configparser
-CONFIG_FILE = "config.ini"
+from UI_files.UI_Color import *
+from config_util import *
 
-ctypes.windll.shcore.SetProcessDpiAwareness(1)
+
+QApplication.setHighDpiScaleFactorRoundingPolicy(
+    Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
 
 class RobocopyWorker(QObject):
@@ -48,8 +50,6 @@ class MyWindow(QWidget, Ui_Form):
     def __init__(self, parent=None):
         super(MyWindow, self).__init__(parent)
         self.setupUi(self)
-        # self.setFixedSize(self.sizeHint())
-
         self.s1 = True
         self.s2 = False
         self.status = "複製"
@@ -72,36 +72,8 @@ class MyWindow(QWidget, Ui_Form):
 
         self.thread = None
         self.worker = None
-        self.load_config()
-
-    def load_config(self):
-        config = configparser.ConfigParser()
-        if not Path(CONFIG_FILE).exists():
-            QMessageBox.information(
-                self, "未配置", f"找不到配置文件：{CONFIG_FILE}\n將使用預設設置")
-            return
-        config.read(CONFIG_FILE)
-        self.radioButton_2.setChecked(config.getboolean("Action", "action"))
-        self.mt_cb.setChecked(config.getboolean("Function", "mt"))
-        self.mt_sb.setValue(config.getint("Function", "mt_s"))
-        self.j_cb.setChecked(config.getboolean("Function", "j"))
-        self.z_cb.setChecked(config.getboolean("Function", "z"))
-        self.is_cb.setChecked(config.getboolean("Function", "if"))
-        self.xn_cb.setChecked(config.getboolean("Function", "xn"))
-        self.xo_cb.setChecked(config.getboolean("Function", "xo"))
-        self.rt_time.setValue(config.getint("Retry", "rt"))
-        self.wait_time.setValue(config.getint("Retry", "wt"))
-        self.comboBox.setCurrentIndex(config.getint("Retry", "rt_unit"))
-        self.comboBox_2.setCurrentIndex(config.getint("Retry", "wt_unit"))
-        self.i_s_cb.setChecked(config.getboolean("Advanced", "is"))
-        self.e_cb.setChecked(config.getboolean("Advanced", "e"))
-        self.xd_xf_cb.setChecked(config.getboolean("Advanced", "xdf"))
-        self.mir_w_cb.setChecked(config.getboolean("Advanced", "mw"))
-        self.log_cb.setChecked(config.getboolean("Log", "log"))
-        self.logp_cb.setChecked(config.getboolean("Log", "logp"))
-        self.nfl_cb.setChecked(config.getboolean("Log", "nfl"))
-        self.ndl_cb.setChecked(config.getboolean("Log", "ndl"))
-        self.log_path.setText(config.get("Log", "path"))
+        load_config(self)
+        # self.toggle_theme()
 
     def source_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Select Source Folder")
@@ -128,7 +100,7 @@ class MyWindow(QWidget, Ui_Form):
             return
 
         mt_s = self.mt_sb.value()
-        if self.i_s_cb.checkState() == Qt.Checked:
+        if self.i_s_cb.checkState() == Qt.CheckState.Checked:
             dest = dest / source.name
 
         cmd = ["robocopy", str(source), str(dest)]
@@ -140,24 +112,24 @@ class MyWindow(QWidget, Ui_Form):
         elif self.radioButton_3.isChecked():
             self.status = "鏡像"
             cmd.append("/MIR")
-        if self.mt_cb.checkState() == Qt.Checked:
+        if self.mt_cb.checkState() == Qt.CheckState.Checked:
             cmd.append(f"/MT:{mt_s}")
-        if self.j_cb.checkState() == Qt.Checked:
+        if self.j_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/J")
-        if self.z_cb.checkState() == Qt.Checked:
+        if self.z_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/Z")
-        if self.is_cb.checkState() == Qt.Checked:
+        if self.is_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/IS")
-        if self.xn_cb.checkState() == Qt.Checked:
+        if self.xn_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/XN")
-        if self.xo_cb.checkState() == Qt.Checked:
+        if self.xo_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/XO")
         cmd.append("/R:" + str(self.rt_time.value() *
                    10**self.comboBox.currentIndex()))
         cmd.append("/W:" + str(self.wait_time.value() *
                    60**self.comboBox_2.currentIndex()))
-        e_ = "/E" if self.e_cb.checkState() == Qt.Checked else "/S"
-        if not self.not_e_s_cb.checkState() == Qt.Checked:
+        e_ = "/E" if self.e_cb.checkState() == Qt.CheckState.Checked else "/S"
+        if not self.not_e_s_cb.checkState() == Qt.CheckState.Checked:
             cmd.append(e_)
 
         exclude_file = source / "exclude.txt"
@@ -173,21 +145,21 @@ class MyWindow(QWidget, Ui_Form):
                         xd_list.append(line)
                     else:
                         xf_list.append(line)
-            if self.xd_xf_cb.checkState() == Qt.Checked:
+            if self.xd_xf_cb.checkState() == Qt.CheckState.Checked:
                 if xd_list:
                     cmd += ["/XD"] + xd_list
                 if xf_list:
                     cmd += ["/XF"] + xf_list
         except FileNotFoundError:
             pass
-        log_set = "/unilog:" if self.logp_cb.checkState() == Qt.Checked else "/unilog+:"
+        log_set = "/unilog:" if self.logp_cb.checkState() == Qt.CheckState.Checked else "/unilog+:"
         log_set += self.log_path.text()
-        if self.log_cb.checkState() == Qt.Checked:
+        if self.log_cb.checkState() == Qt.CheckState.Checked:
             cmd.append(log_set)
-        if not self.nfl_cb.checkState() == Qt.Checked:
+        if not self.nfl_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/NFL")
             cmd.append("/NP")
-        if not self.ndl_cb.checkState() == Qt.Checked:
+        if not self.ndl_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/NDL")
         # 準備 QThread 任務
         self.progressBar.setValue(0)
@@ -220,14 +192,14 @@ class MyWindow(QWidget, Ui_Form):
         self.progressBar.setValue(0)
         self.cancel_btn.setEnabled(True)
         self.start_btn.setEnabled(True)
-        self.save_config()
+        save_config(self)
 
     def on_error(self, message):
         self.progressBar.setValue(0)
         QMessageBox.critical(self, "異常錯誤", message)
 
     def cancel(self):
-        self.save_config()
+        save_config(self)
         self.close()
 
     def check_log_conflict(self):
@@ -281,67 +253,37 @@ class MyWindow(QWidget, Ui_Form):
         else:
             self.wait_time.setMaximum(59)
 
-    def excloud_folder(self):
-        folder = QFileDialog.getExistingDirectory(
-            self, "Select Exclude Folder")
-        if folder:
-            self.exclude_path.setText(folder)
-
     def log_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Select Log Folder")
         if folder:
             self.log_path.setText(folder+"/log.txt")
 
     def mir_warning(self):
-        if self.mir_w_cb.checkState() == Qt.Checked:
+        if self.mir_w_cb.checkState() == Qt.CheckState.Checked:
             return
         if self.radioButton_3.isChecked():
             reply = QMessageBox.warning(
                 self, "警告", "使用鏡像會刪除目標資料夾中多出的檔案，是否繼續？",
-                QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-            if reply == QMessageBox.No:
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
+            if reply == QMessageBox.StandardButton.No:
                 self.radioButton.setChecked(True)
 
-    def save_config(self):
-        config = configparser.ConfigParser()
-        config["Action"] = {
-            "action": str(self.radioButton_2.isChecked()),
-        }
-        config["Function"] = {
-            "mt": str(self.mt_cb.isChecked()),
-            "mt_s": str(self.mt_sb.value()),
-            "j": str(self.j_cb.isChecked()),
-            "z": str(self.z_cb.isChecked()),
-            "if": str(self.is_cb.isChecked()),
-            "xn": str(self.xn_cb.isChecked()),
-            "xo": str(self.xo_cb.isChecked())
-        }
-        config["Retry"] = {
-            "rt": str(self.rt_time.text()),
-            "wt": str(self.wait_time.text()),
-            "rt_unit": str(self.comboBox.currentIndex()),
-            "wt_unit": str(self.comboBox_2.currentIndex())
-        }
-        config["Advanced"] = {
-            "is": str(self.i_s_cb.isChecked()),
-            "e": str(self.e_cb.isChecked()),
-            "xdf": str(self.xd_xf_cb.isChecked()),
-            "mw": str(self.mir_w_cb.isChecked())
-        }
-        config["Log"] = {
-            "log": str(self.log_cb.isChecked()),
-            "logp": str(self.logp_cb.isChecked()),
-            "nfl": str(self.nfl_cb.isChecked()),
-            "ndl": str(self.ndl_cb.isChecked()),
-            "path": str(self.log_path.text())
-        }
-        with open(CONFIG_FILE, "w") as configfile:
-            config.write(configfile)
+    # def toggle_theme(self):
+    #     if self.dark_cb.isChecked():
+    #         app.setPalette(dark())
+    #         app.setStyleSheet(dark_qss())
+
+    #     else:
+    #         app.setPalette(light())
+    #         app.setStyleSheet(light_qss())
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle(QStyleFactory.create("WindowsVista"))
+    # app.setStyle(QStyleFactory.create("Fusion"))
+
     ui = MyWindow()
     ui.setWindowTitle("RobocoPy-GUI")
     ui.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
