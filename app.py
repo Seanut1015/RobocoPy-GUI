@@ -1,16 +1,15 @@
-from PyQt6.QtWidgets import QStyleFactory
-import sys
 import subprocess
+import sys
 import time
 from pathlib import Path
-from PyQt6.QtWidgets import (
-    QApplication, QWidget, QFileDialog, QMessageBox
-)
-from PyQt6.QtCore import Qt, QThread, pyqtSignal, QObject
+
+from PyQt6.QtCore import QObject, Qt, QThread, pyqtSignal
+from PyQt6.QtWidgets import (QApplication, QFileDialog, QMessageBox,
+                             QStyleFactory, QWidget)
+
+from config_util import *
 from UI_files.UI import Ui_Form
 from UI_files.UI_Color import *
-from config_util import *
-
 
 QApplication.setHighDpiScaleFactorRoundingPolicy(
     Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
@@ -40,6 +39,7 @@ class RobocopyWorker(QObject):
             )
             elapsed = time.time() - start_time
             self.result.emit(result.returncode, elapsed)
+
         except Exception as e:
             self.error.emit(str(e))
         finally:
@@ -73,7 +73,7 @@ class MyWindow(QWidget, Ui_Form):
         self.thread = None
         self.worker = None
         load_config(self)
-        # self.toggle_theme()
+        self.already = not self.preview_cb.checkState() == Qt.CheckState.Checked
 
     def source_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Select Source Folder")
@@ -84,6 +84,9 @@ class MyWindow(QWidget, Ui_Form):
         folder = QFileDialog.getExistingDirectory(self, "Select Target Folder")
         if folder:
             self.det_path.setText(folder)
+
+    def preview_cmd(self):
+        self.already = not self.already
 
     def start(self):
         source = Path(self.source_path.text())
@@ -162,21 +165,31 @@ class MyWindow(QWidget, Ui_Form):
         if not self.ndl_cb.checkState() == Qt.CheckState.Checked:
             cmd.append("/NDL")
         # 準備 QThread 任務
-        self.progressBar.setValue(0)
-        self.progressBar.setRange(0, 0)
-        self.label.setText(f"正在{self.status}中")
-        self.thread = QThread()
-        self.worker = RobocopyWorker(cmd)
-        self.worker.moveToThread(self.thread)
+        if self.preview_cb.checkState() == Qt.CheckState.Checked:
+            reply = QMessageBox.question(
+                self, "預覽", f"Robocopy 命令：\n{' '.join(cmd)}",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No
+            )
+            if reply == QMessageBox.StandardButton.No:
+                return
+            self.already = not self.already
 
-        self.thread.started.connect(self.worker.run)
-        self.worker.result.connect(self.on_result)
-        self.worker.error.connect(self.on_error)
-        self.worker.finished.connect(self.thread.quit)
-        self.worker.finished.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-        self.start_btn.setEnabled(False)
-        self.thread.start()
+        if self.already:
+            self.progressBar.setValue(0)
+            self.progressBar.setRange(0, 0)
+            self.label.setText(f"正在{self.status}中")
+            self.thread = QThread()
+            self.worker = RobocopyWorker(cmd)
+            self.worker.moveToThread(self.thread)
+
+            self.thread.started.connect(self.worker.run)
+            self.worker.result.connect(self.on_result)
+            self.worker.error.connect(self.on_error)
+            self.worker.finished.connect(self.thread.quit)
+            self.worker.finished.connect(self.worker.deleteLater)
+            self.thread.finished.connect(self.thread.deleteLater)
+            self.start_btn.setEnabled(False)
+            self.thread.start()
 
     def on_result(self, returncode, elapsed_time):
         self.progressBar.setRange(0, 100)
@@ -188,6 +201,7 @@ class MyWindow(QWidget, Ui_Form):
         else:
             QMessageBox.information(
                 self, "完成", f"資料傳輸完成\n耗時：{elapsed_time:.3f} 秒")
+        self.already = not self.preview_cb.checkState() == Qt.CheckState.Checked
         self.label.setText("準備中...")
         self.progressBar.setValue(0)
         self.cancel_btn.setEnabled(True)

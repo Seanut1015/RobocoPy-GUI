@@ -66,7 +66,7 @@ class Ui_Form(object):
         self.source_btn.setObjectName("source_btn")
         self.source_path = QtWidgets.QLineEdit(parent=self.groupBox)
         self.source_path.setGeometry(QtCore.QRect(20, 20, 181, 20))
-        self.source_path.setReadOnly(True)
+        self.source_path.setReadOnly(False)
         self.source_path.setObjectName("source_path")
         self.groupBox_2 = QtWidgets.QGroupBox(parent=self.tab)
         self.groupBox_2.setGeometry(QtCore.QRect(11, 70, 299, 51))
@@ -77,7 +77,7 @@ class Ui_Form(object):
         self.det_btn.setObjectName("det_btn")
         self.det_path = QtWidgets.QLineEdit(parent=self.groupBox_2)
         self.det_path.setGeometry(QtCore.QRect(20, 20, 181, 20))
-        self.det_path.setReadOnly(True)
+        self.det_path.setReadOnly(False)
         self.det_path.setObjectName("det_path")
         self.groupBox_3 = QtWidgets.QGroupBox(parent=self.tab)
         self.groupBox_3.setGeometry(QtCore.QRect(11, 130, 299, 51))
@@ -214,12 +214,12 @@ class Ui_Form(object):
         self.mir_w_cb.setGeometry(QtCore.QRect(20, 85, 121, 16))
         self.mir_w_cb.setChecked(False)
         self.mir_w_cb.setObjectName("mir_w_cb")
-        # self.dark_cb = QtWidgets.QCheckBox(parent=self.groupBox_7)
-        # self.dark_cb.setEnabled(True)
-        # self.dark_cb.setGeometry(QtCore.QRect(170, 85, 101, 16))
-        # self.dark_cb.setCheckable(True)
-        # self.dark_cb.setChecked(False)
-        # self.dark_cb.setObjectName("dark_cb")
+        self.preview_cb = QtWidgets.QCheckBox(parent=self.groupBox_7)
+        self.preview_cb.setEnabled(True)
+        self.preview_cb.setGeometry(QtCore.QRect(170, 85, 101, 16))
+        self.preview_cb.setCheckable(True)
+        self.preview_cb.setChecked(False)
+        self.preview_cb.setObjectName("preview_cb")
         self.groupBox_8 = QtWidgets.QGroupBox(parent=self.tab_2)
         self.groupBox_8.setGeometry(QtCore.QRect(11, 225, 299, 111))
         self.groupBox_8.setCheckable(False)
@@ -261,7 +261,7 @@ class Ui_Form(object):
         self.cancel_btn.clicked.connect(Form.cancel)  # type: ignore
         self.log_btn.clicked.connect(Form.log_folder)  # type: ignore
         self.radioButton_3.clicked.connect(Form.mir_warning)  # type: ignore
-        # self.dark_cb.clicked.connect(Form.toggle_theme) # type: ignore
+        self.preview_cb.clicked.connect(Form.preview_cmd)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -326,7 +326,7 @@ class Ui_Form(object):
         self.mir_w_cb.setToolTip(_translate(
             "Form", "在來源資料夾中加入exclude.txt，即可排除內部寫到的檔案"))
         self.mir_w_cb.setText(_translate("Form", "關閉鏡像警告"))
-        # self.dark_cb.setText(_translate("Form", "暗黑模式"))
+        self.preview_cb.setText(_translate("Form", "開啟預覽"))
         self.groupBox_8.setTitle(_translate("Form", "記錄檔"))
         self.log_cb.setText(_translate("Form", "啟用log"))
         self.log_btn.setText(_translate("Form", "瀏覽"))

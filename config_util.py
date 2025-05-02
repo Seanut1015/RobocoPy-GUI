@@ -1,6 +1,8 @@
-from PyQt6.QtWidgets import QMessageBox
-from pathlib import Path
 import configparser
+from pathlib import Path
+
+from PyQt6.QtWidgets import QMessageBox
+
 CONFIG_FILE = "config.ini"
 
 
@@ -27,7 +29,7 @@ def load_config(self):
     self.e_cb.setChecked(config.getboolean("Advanced", "e"))
     self.xd_xf_cb.setChecked(config.getboolean("Advanced", "xdf"))
     self.mir_w_cb.setChecked(config.getboolean("Advanced", "mw"))
-    # self.dark_cb.setChecked(config.getboolean("Advanced", "color"))
+    self.preview_cb.setChecked(config.getboolean("Advanced", "preview"))
     self.log_cb.setChecked(config.getboolean("Log", "log"))
     self.logp_cb.setChecked(config.getboolean("Log", "logp"))
     self.nfl_cb.setChecked(config.getboolean("Log", "nfl"))
@@ -60,7 +62,7 @@ def save_config(self):
         "e": str(self.e_cb.isChecked()),
         "xdf": str(self.xd_xf_cb.isChecked()),
         "mw": str(self.mir_w_cb.isChecked()),
-        # "color": str(self.dark_cb.isChecked()),
+        "preview": str(self.preview_cb.isChecked()),
     }
     config["Log"] = {
         "log": str(self.log_cb.isChecked()),
